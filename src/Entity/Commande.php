@@ -17,7 +17,7 @@ class Commande
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(name="created_at", type="datetime", options={"default": "CURRENT_TIMESTAMP"})
      */
     private $datetime;
 
@@ -52,7 +52,7 @@ class Commande
     private $annulation_remboursement;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="string", length=255)
      */
     private $stripe_id_session;
 

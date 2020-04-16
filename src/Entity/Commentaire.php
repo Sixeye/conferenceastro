@@ -31,6 +31,12 @@ class Commentaire
      */
     private $filename;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Conference", inversedBy="commentaire")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $conference;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -70,5 +76,22 @@ class Commentaire
         $this->filename = $filename;
 
         return $this;
+    }
+
+    public function getConference(): ?Conference
+    {
+        return $this->conference;
+    }
+
+    public function setConference(?Conference $conference): self
+    {
+        $this->conference = $conference;
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return(string) $this->getTexte();
     }
 }

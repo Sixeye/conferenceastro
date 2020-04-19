@@ -54,6 +54,11 @@ class Conference
      */
     private $commentaire;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $slug;
+
     public function __construct()
     {
         $this->commentaire = new ArrayCollection();
@@ -170,6 +175,18 @@ class Conference
     public function __toString()
     {
         return $this->ville.''.$this->titre;
+    }
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): self
+    {
+        $this->slug = $slug;
+
+        return $this;
     }
 
 }

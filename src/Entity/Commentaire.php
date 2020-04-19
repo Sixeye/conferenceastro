@@ -17,11 +17,6 @@ class Commentaire
     private $id;
 
     /**
-     * @ORM\Column(type="datetime")
-     */
-    private $datetime;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $texte;
@@ -37,21 +32,14 @@ class Commentaire
      */
     private $conference;
 
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $createdAt;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getDatetime(): ?\DateTimeInterface
-    {
-        return $this->datetime;
-    }
-
-    public function setDatetime(\DateTimeInterface $datetime): self
-    {
-        $this->datetime = $datetime;
-
-        return $this;
     }
 
     public function getTexte(): ?string
@@ -93,5 +81,17 @@ class Commentaire
     public function __toString()
     {
         return(string) $this->getTexte();
+    }
+
+    public function getCreatedAt(): ?\DateTimeInterface
+    {
+        return $this->createdAt;
+    }
+
+    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 }

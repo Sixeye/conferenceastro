@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Livre d'or - {{ conference }}{% endblock %}
+
+{% block body %}
+
+    <h1>{{ conference.titre }} - {{ conference.ville }}</h1>
+    <h2>{{ conference.description }}</h2>
+    <h4>{{ conference.adresse }}</h4>
+    <h4>{{ conference.codepostal }}</h4>
+
+
+    {% if commentaires | length > 0 %}
+        <div>{{ commentaires | length }} commentaire(s)</div>
+        {% for commentaire in commentaires %}
+            {% if commentaire.filename %}
+                <img src="{{ asset('upload/photos' ~ commentaire.filename) }}"/>
+            {% endif %}
+        <h3>{{ commentaire.texte }}</h3>
+        <small>
+            {{ commentaire.createdAt|format_datetime('medium', 'short') }}
+        </small>
+        {% endfor%}
+        {% if previous >= 0 %}
+            <a href="{{ path('conference', {slug: conference.slug, offset: previous}) }}">Précédent</a>
+        {% endif %}
+        {% if next < commentaires | length %}
+            <a href="{{ path('conference', {slug: conference.slug, offset: next}) }}">Suivant</a>
+        {% endif %}
+        {% else %}
+            <div>Pas de commentaires pour le moment.</div>
+    {% endif %}
+
+{% endblock %}

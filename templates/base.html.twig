@@ -7,6 +7,15 @@
     </head>
     <body>
         {% block body %}
+            <header>
+                <h1><a href="{{ path('home') }}">Les conférences</a></h1>
+                <ul>
+                    {% for conference in conferences %}
+                        <li><a href="{{ path('conference', {id: conference.id}) }}">{{ conference.titre }}</a></li>
+                    {% endfor %}
+                </ul>
+            </header>
+
             <h1>Livre d'or</h1>
             <h2>Vos commentaires</h2>
         {% endblock %}

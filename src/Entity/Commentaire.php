@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\CommentaireRepository")
+ * @ORM\HasLifecycleCallbacks()
  */
 class Commentaire
 {
@@ -64,6 +65,11 @@ class Commentaire
         $this->filename = $filename;
 
         return $this;
+    }
+
+    public function setCreatedAtValue()
+    {
+        $this->createdAt = new \DateTime();
     }
 
     public function getConference(): ?Conference

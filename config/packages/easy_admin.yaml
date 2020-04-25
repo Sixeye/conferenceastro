@@ -6,6 +6,7 @@ easy_admin:
             - { entity: 'Commentaire', label: 'Commentaires', icon: 'comments' }
             - { entity: 'Livre', label: 'Livres', icon: 'book' }
             - { entity: 'Commande', label: 'Commandes', icon: 'shopping-cart'}
+
     entities:
         # List the entity class name you want to manage
         Conference:
@@ -13,6 +14,9 @@ easy_admin:
 
         Commentaire:
             class: App\Entity\Commentaire
+            fields:
+                - texte
+                - { property: 'filename', type: 'image', 'base_path': "/uploads/photos", label: 'Photo' }
 
         Livre:
             class: App\Entity\Livre

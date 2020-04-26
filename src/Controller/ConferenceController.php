@@ -7,6 +7,7 @@ use App\Entity\Conference;
 use App\Form\CommentaireFormType;
 use App\Repository\CommentaireRepository;
 use App\Repository\ConferenceRepository;
+use App\SpamChecker;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
@@ -39,7 +40,7 @@ class ConferenceController extends AbstractController
     /**
      * @Route("/conference/{slug}", name="conference")
      */
-    public function show(Request $request, Conference $conference, CommentaireRepository $commentaireRepository, string $photoDir)
+    public function show(Request $request, Conference $conference, CommentaireRepository $commentaireRepository, SpamChecker $spamChecker, string $photoDir)
     {
         $commentaire = new Commentaire();
         $form = $this->createForm(CommentaireFormType::class, $commentaire);
@@ -59,6 +60,17 @@ class ConferenceController extends AbstractController
             }
 
             $this->entityManager->persist($commentaire);
+
+            $context = [
+                'user_ip'    => $request->getClientIp(),
+                'user_agent' => $request->headers->get('user-agent'),
+                'referrer'   => $request->headers->get('referer'),
+                'permalink'  => $request->getUri(),
+            ];
+            if (2 === $spamChecker->getSpamScore($commentaire, $context)){
+                throw new \RuntimeException('No spams here!');
+            }
+
             $this->entityManager->flush();
             return $this->redirectToRoute('conference', ['slug' => $conference->getSlug()]);
         }
@@ -66,11 +78,13 @@ class ConferenceController extends AbstractController
         $offset = max(0, $request->query->getInt('offset', 0));
         $paginator = $commentaireRepository->getCommentairePaginator($conference, $offset);
         return new Response($this->twig->render('conference/show.html.twig', [
-            'conference'   => $conference,
-            'commentaires' => $paginator,
-            'previous'     => $offset - CommentaireRepository::PAGINATOR_PER_PAGE,
-            'next'         => min(count($paginator), $offset + CommentaireRepository::PAGINATOR_PER_PAGE),
+            'conference'       => $conference,
+            'commentaires'     => $paginator,
+            'previous'         => $offset - CommentaireRepository::PAGINATOR_PER_PAGE,
+            'next'             => min(count($paginator), $offset + CommentaireRepository::PAGINATOR_PER_PAGE),
             'commentaire_form' => $form->createView(),
         ]));
     }
 }
+
+//TODO faire le système d'authenfication avec mdp et aussi définir les rôles

@@ -14,7 +14,7 @@
         <div>{{ commentaires | length }} commentaire(s)</div>
         {% for commentaire in commentaires %}
             {% if commentaire.filename %}
-                <img src="{{ asset('upload/photos' ~ commentaire.filename) }}"/>
+                <img src="{{ asset('uploads/photos/' ~ commentaire.filename) }}"/>
             {% endif %}
         <h3>{{ commentaire.texte }}</h3>
         <small>

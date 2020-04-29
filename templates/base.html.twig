@@ -3,9 +3,57 @@
     <head>
         <meta charset="UTF-8">
         <title>{% block title %}Astronomie - Conférence{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+
+        {% block stylesheets %}
+
+            <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/color-switcher-design.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/elegent-icon.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/flaticon.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/fontawesome-all.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/jquery.fancybox.min.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/owl.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/swiper.css') }}">
+
+        {% endblock %}
+
     </head>
     <body>
+        {% block header %}
+
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+                <a class="navbar-brand" href="{{ path('home') }}">Astronomy Conference</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarColor02">
+                    <ul class="navbar-nav mr-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('home') }}">Les conférences</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Les conférenciers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Nos livres</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ path('app_login') }}">login</a>
+                        </li>
+
+
+                    </ul>
+
+                </div>
+            </nav>
+
+        {% endblock %}
+
         {% block body %}
             <header>
                 <h1><a href="{{ path('home') }}">Les conférences</a></h1>
@@ -19,6 +67,60 @@
             <h1>Livre d'or</h1>
             <h2>Vos commentaires</h2>
         {% endblock %}
-        {% block javascripts %}{% endblock %}
+
+        {% block footer %}
+
+            <footer class="footer fixed-bottom">
+                <div class="container navbar-expand-sm">
+                    <span class="text-muted">© Copyright Astronomy Conference</span>
+
+                        <ul class="navbar-nav">
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('home') }}">Les conférences</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Les conférenciers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Nos livres</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">A propos de nous</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Nous contacter</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ path('app_login') }}">login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Mentions Légales</a>
+                            </li>
+
+                        </ul>
+                </div>
+            </footer>
+
+        {% endblock %}
+
+        {% block javascripts %}
+
+            <script src="{{ asset('js/jquery.js') }}"></script>
+            <script src="{{ asset('js/jquery-ui.js') }}"></script>
+            <script src="{{ asset('js/popper.min.js') }}"></script>
+            <script src="{{ asset('js/jquery.fancybox.js') }}"></script>
+            <script src="{{ asset('js/jquery.countdown.js') }}"></script>
+            <script src="{{ asset('js/bootstrap.js') }}"></script>
+            <script src="{{ asset('js/appear.js') }}"></script>
+            <script src="{{ asset('js/color-settings.js') }}"></script>
+            <script src="{{ asset('js/map-script.js') }}"></script>
+            <script src="{{ asset('js/owl.js') }}"></script>
+            <script src="{{ asset('js/parallax.min.js') }}"></script>
+            <script src="{{ asset('js/script.js') }}"></script>
+            <script src="{{ asset('js/validate.js') }}"></script>
+            <script src="{{ asset('js/wow.js') }}"></script>
+
+        {% endblock %}
     </body>
 </html>

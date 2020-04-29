@@ -4,7 +4,8 @@
 
 {% block body %}
 
-    <h2>Les conférences</h2>
+    <div class="m-5">
+    <h2 class="jumbotron">Les conférences</h2>
 
     {% for conference in conferences %}
         <h4>{{ conference.titre }} - {{ conference.ville }}</h4>
@@ -13,5 +14,6 @@
         </p>
     {% endfor %}
 
+    </div>
 
 {% endblock %}

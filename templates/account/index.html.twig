@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gérer le compte{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('css/account.css') }}">
+{% endblock %}
+
+{% block body %}
+
+    <h1>{{ app.user.prenom  }}, ici, vous allez pouvoir gérer votre compte </h1>
+
+{% endblock %}

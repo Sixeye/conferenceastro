@@ -5,10 +5,14 @@ namespace App\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @UniqueEntity("email", message="Cet email est déjà utilisé. Veuillez vous connecter.")
  */
 class User implements UserInterface
 {
@@ -21,6 +25,9 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups("main")
+     * @Assert\Email(message="Veuillez renseigner un email valide")
+     * @Assert\NotBlank(message="Veuillez renseigner l'email")
      */
     private $email;
 
@@ -31,11 +38,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("main")
      */
     private $nom;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups("main")
      */
     private $prenom;
 
@@ -59,9 +68,47 @@ class User implements UserInterface
      */
     private $commentaires;
 
+    /**
+     * @Assert\Type("string")
+     * @Assert\Length(
+     *     min = 5,
+     *     minMessage="Le mot de passe doit au moins comporter {{ limit }} caractères"
+     * )
+     * @var string The hashed password
+     * @ORM\Column(type="string", length=255)
+     */
+    private $password;
+
+    /**
+     * @Assert\EqualTo(propertyPath="password", message="Le mot de passe ne correspond pas.")
+     */
+    public $passwordConfirm;
+
+    /**
+     * @return mixed
+     */
+    public function getPasswordConfirm()
+    {
+        return $this->passwordConfirm;
+    }
+
+    /**
+     * @param mixed $passwordConfirm
+     */
+    public function setPasswordConfirm($passwordConfirm): void
+    {
+        $this->passwordConfirm = $passwordConfirm;
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="App\Entity\ApiToken", mappedBy="user", orphanRemoval=true)
+     */
+    private $apiTokens;
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
+        $this->apiTokens = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -115,7 +162,7 @@ class User implements UserInterface
      */
     public function getPassword()
     {
-        // not needed for apps that do not check user passwords
+        return $this->password;
     }
 
     /**
@@ -123,7 +170,7 @@ class User implements UserInterface
      */
     public function getSalt()
     {
-        // not needed for apps that do not check user passwords
+        // not needed thanks to bcrypt or argon !!!
     }
 
     /**
@@ -220,6 +267,44 @@ class User implements UserInterface
             // set the owning side to null (unless already changed)
             if ($commentaire->getUser() === $this) {
                 $commentaire->setUser(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ApiToken[]
+     */
+    public function getApiTokens(): Collection
+    {
+        return $this->apiTokens;
+    }
+
+    public function addApiToken(ApiToken $apiToken): self
+    {
+        if (!$this->apiTokens->contains($apiToken)) {
+            $this->apiTokens[] = $apiToken;
+            $apiToken->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeApiToken(ApiToken $apiToken): self
+    {
+        if ($this->apiTokens->contains($apiToken)) {
+            $this->apiTokens->removeElement($apiToken);
+            // set the owning side to null (unless already changed)
+            if ($apiToken->getUser() === $this) {
+                $apiToken->setUser(null);
             }
         }
 

@@ -1,0 +1,140 @@
+body {
+    font-family: Helvetica, arial, sans-serif;
+    font-size: 16px;
+    margin: 0;
+}
+
+#basket {
+    color: #fff;
+    text-align: right;
+}
+
+#basket a {
+    background-color: #fff;
+    display: inline-block;
+    margin-bottom: 6px;
+    padding: 7px 12px 6px 12px;
+}
+
+#basket a:link, #basket a:visited {
+    color: #000;
+    text-decoration: none;
+}
+
+#basket a:hover, #basket a:active {
+    background-color: #eee;
+}
+
+.book-list {
+    display: grid;
+    grid-gap: 24px;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 24px;
+}
+
+.book-list > div {
+    background-color: #eee;
+    display: flex;
+    padding: 24px;
+}
+
+.book-list > div h2 {
+    margin-top: 0;
+    margin-bottom: 12px;
+}
+
+.book-list > div p {
+    margin: 12px 0;
+}
+
+.book-list > div > img {
+    margin-right: 24px;
+}
+
+.panier {
+    background: #1FA2FF;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+button {
+    background: #1F1C2C;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #928DAB, #1F1C2C);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #928DAB, #1F1C2C); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+    border-radius: 0.2em;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    font-size: 100%;
+    padding: 12px 18px;
+}
+
+button:hover {
+    background-color: #0E87E3;
+}
+
+.card-errors {
+    color: red;
+    font-weight: bold;
+}
+
+form {
+    margin: 24px 0;
+}
+
+form.checkout {
+    display: flex;
+}
+
+form.checkout > div {
+    border: #095996 1px solid;
+    margin-right: 12px;
+    padding: 12px;
+    width: 60%;
+}
+
+form input[type="text"], form input[type="email"] {
+    border: #095996 1px solid;
+    font-size: 100%;
+    padding: 11px;
+    width: 300px;
+    max-width: 50%;
+}
+
+form label {
+    display: block;
+    margin-bottom: 6px;
+    margin-top: 6px;
+}
+
+header {
+    background: #24C6DC;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #514A9D, #24C6DC);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #514A9D, #24C6DC); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    display: flex;
+    justify-content: space-between;
+    padding: 24px;
+}
+
+header .site-name {
+    font-size: 200%;
+    margin: 12px 0;
+}
+
+header .site-name:link, header .site-name:visited {
+    color: #fff;
+    text-decoration: none;
+}
+
+main {
+    padding: 24px;
+}
+
+main h1 {
+    margin-top: 0;
+}
+
+.book_card{
+    border-radius: 0.4em;
+}

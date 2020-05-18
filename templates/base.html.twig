@@ -38,7 +38,7 @@
                             <!--Top Left-->
                             <div class="top-left clearfix">
                                 <ul class="links clearfix">
-                                    <li><a href="{{ path('home') }}"><span>CONFERENCE ASTROPHYSIQUE</span></a></li>
+                                    <li><a href="{{ path('home') }}"><span>ASTRONOMY - CONFERENCE</span></a></li>
                                     <li><a href="#"><span class="icon fa fa-phone"></span>+33 01 40 36 25 11</a></li>
                                     <li><a href="#"><span class="icon fa fa-envelope"></span>support@astronomyconference.com</a></li>
                                 </ul>
@@ -88,7 +88,7 @@
                                             <a class="nav-link" href="#">Les conférenciers</a>
                                         </li>
                                         <li class="nav-item">
-                                            <a class="nav-link" href="#">Nos livres</a>
+                                            <a class="nav-link" href="{{ path('livre') }}">Nos livres</a>
                                         </li>
                                         {% if is_granted('ROLE_USER') %}
                                             <li class="nav-item dropdown">
@@ -113,17 +113,6 @@
                     </div>
                 </div>
 
-                <!-- Mobile Menu  -->
-                <div class="mobile-menu">
-                    <div class="menu-backdrop"></div>
-                    <div class="close-btn"><span class="icon flaticon-cancel-1"></span></div>
-
-                    <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
-                    <nav class="menu-box">
-                        <div class="nav-logo"><br/><br/><a href="index-2.html"><img src="images/logo-2.png" alt="" title=""></a></div>
-                        <ul class="navigation clearfix"><!--Keep This Empty / Menu will come through Javascript--></ul>
-                    </nav>
-                </div><!-- End Mobile Menu -->
                 </nav>
             </header>
             <!--End Main Header -->
@@ -208,7 +197,7 @@
                                                     <a class="nav-link" href="#">Les conférenciers</a>
                                                 </li>
                                                 <li class="nav-item">
-                                                    <a class="nav-link" href="#">Nos livres</a>
+                                                    <a class="nav-link" href="{{ path('app_account') }}">Nos livres</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="#">A propos de nous</a>

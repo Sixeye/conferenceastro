@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Boutique{% endblock %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset('css/app_basket.css') }}">
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="mx-auto" style="width: 100em; height: 12em;">
+        <hr>
+    </div>
+
+    <div class="m-5" id="basket" style="display: nonea;">
+        <a href="#" class="panier">Voir le panier</a>
+        <div>0 livres</div>
+    </div>
+
+<div class="example-wrapper m-4">
+    <h1>Livres</h1>
+
+    <div class="book-list">
+
+        {% for book in books %}
+            <div class="card-body book_card">
+                <img src="/img/livre/{{ book.image }}" alt="Book cover">
+                <div>
+                    <h2 class="card-header">{{ book.titre }}</h2>
+                    <p>auteur(s) {{ book.auteurs }}</p>
+                    <p>{{ book.prixht * 1.2 }} €</p>
+                    <p>DESCRIPTION: {{ book.description }}</p>
+                    <p>ISBN: {{ book.isbn }}</p>
+                    <button onClick="addToBasket({{ book.id }});">Ajouter au panier</button>
+                </div>
+            </div>
+
+        {% endfor %}
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function(event) {
+            updateBasket();
+        });
+    </script>
+</div>
+{% endblock %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script src="{{ asset('js/axios.min.js') }}"></script>
+    <script src="{{ asset('js/app_basket.js') }}"></script>
+
+{% endblock %}

@@ -12,9 +12,9 @@ class InitialisationPasswordType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('ancienPassword', PasswordType::class,    [ 'attr' => ['placeholder' => 'Saississez votre mot de passe actuel']])
-            ->add('nouveauPassword', PasswordType::class,   [ 'attr' => ['placeholder' => 'Nouveau mot de passe']])
-            ->add('confirmerPassword', PasswordType::class, [ 'attr' => ['placeholder' => 'Confirmez le nouveau mot de passe']])
+            ->add('ancienPassword', PasswordType::class,    [ 'attr' => ['placeholder' => 'mot de passe actuel']])
+            ->add('nouveauPassword', PasswordType::class,   [ 'attr' => ['placeholder' => 'Nouveau']])
+            ->add('confirmerPassword', PasswordType::class, [ 'attr' => ['placeholder' => 'Confirmez le']])
         ;
     }
 

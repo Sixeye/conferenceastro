@@ -17,60 +17,120 @@
             <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">
             <link rel="stylesheet" href="{{ asset('css/style.css') }}">
             <link rel="stylesheet" href="{{ asset('css/swiper.css') }}">
+            <link rel="shortcut icon" type="image/png" href="{{ asset('img/favicon.png') }}"/>
 
         {% endblock %}
 
     </head>
     <body>
-        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
-        
-            <div class="alert alert-warning" style="margin-bottom: 0;">
-                Vous êtes connecté en tant que cet utilisateur.
-                <a href="{{ path('home', {'_switch_user': '_exit'}) }}">Revenir au profil Admin</a>
-            </div>
-            
-        {% endif %}
     
         {% block header %}
 
-            <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-                <a class="navbar-brand" href="{{ path('home') }}">Astronomy Conference</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+            <!-- Main Header-->
 
-                <div class="collapse navbar-collapse" id="navbarColor02">
-                    <ul class="navbar-nav mr-auto">
+            <header class="main-header header-style-two alternate-two mb-5">
+                <nav>
+                <!-- Header Top Two -->
+                <div class="header-top-two m-3">
+                    <div class="auto-container">
+                        <div class="clearfix">
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ path('home') }}">Les conférences</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Les conférenciers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Nos livres</a>
-                        </li>
-                        {% if is_granted('ROLE_USER') %}
-                            <li class="nav-item dropdown">
-                                <a class="nav-link nav-hover-up2" href="{{ path('app_account') }}"> <i class="icon ion-home" style="font-size: large"></i> </i></a>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link nav-hover-up2" href="{{ path('app_logout') }}">Déconnexion</i></a>
-                            </li>
+                            <!--Top Left-->
+                            <div class="top-left clearfix">
+                                <ul class="links clearfix">
+                                    <li><a href="{{ path('home') }}"><span>CONFERENCE ASTROPHYSIQUE</span></a></li>
+                                    <li><a href="#"><span class="icon fa fa-phone"></span>+33 01 40 36 25 11</a></li>
+                                    <li><a href="#"><span class="icon fa fa-envelope"></span>support@astronomyconference.com</a></li>
+                                </ul>
+                            </div>
 
-                        {% else %}
-                            <li class="nav-item"><a class="nav-link nav-hover-up2" href="{{ path('app_login') }}">Connexion</a></li>
-                        {% endif %}
+                            <!--Top Right-->
+                            <div class="top-right clearfix">
+                                <ul class="social-icons">
+                                    <li><a href="#"><span class="fab fa-facebook-f"></span></a></li>
+                                    <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+                                </ul>
 
+                            </div>
 
-                    </ul>
+                        </div>
 
+                    </div>
                 </div>
-            </nav>
+                <!-- Header Top End -->
+
+                <div class="main-box">
+                    <div class="auto-container clearfix">
+                        <div class="logo-box">
+                            <div class="logo"><a href="{{ path('home') }}"><img style="width: 6em" src="{{ asset('img/logo.png') }}" alt="" title=""></a></div>
+                        </div>
+
+
+                        <!--Nav Box-->
+                        <div class="nav-outer clearfix">
+                            <!--Mobile Navigation Toggler-->
+                            <div class="mobile-nav-toggler"><span class="icon flaticon-menu"></span></div>
+                            <!-- Main Menu -->
+                            <nav class="main-menu navbar-expand-md navbar-light">
+                                <div class="navbar-header">
+                                    <!-- Togg le Button -->
+                                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                        <span class="icon flaticon-menu-button"></span>
+                                    </button>
+                                </div>
+
+                                <div class="collapse navbar-collapse clearfix" id="navbarSupportedContent">
+                                    <ul class="navigation clearfix">
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ path('home') }}">Les conférences</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Les conférenciers</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Nos livres</a>
+                                        </li>
+                                        {% if is_granted('ROLE_USER') %}
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link nav-hover-up2" href="{{ path('app_account') }}"> <i class="icon ion-home" style="font-size: large"></i> </i></a>
+                                            </li>
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link nav-hover-up2" href="{{ path('app_logout') }}">Déconnexion</i></a>
+                                            </li>
+                                            <li class="nav-item dropdown">
+                                                <a class="nav-link nav-hover-up2" href="{{ path('app_account') }}">Mon compte</i></a>
+                                            </li>
+
+                                        {% else %}
+                                            <li class="nav-item"><a class="nav-link nav-hover-up2" href="{{ path('app_login') }}">Connexion</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </nav>
+                            <!-- Main Menu End-->
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Menu  -->
+                <div class="mobile-menu">
+                    <div class="menu-backdrop"></div>
+                    <div class="close-btn"><span class="icon flaticon-cancel-1"></span></div>
+
+                    <!--Here Menu Will Come Automatically Via Javascript / Same Menu as in Header-->
+                    <nav class="menu-box">
+                        <div class="nav-logo"><br/><br/><a href="index-2.html"><img src="images/logo-2.png" alt="" title=""></a></div>
+                        <ul class="navigation clearfix"><!--Keep This Empty / Menu will come through Javascript--></ul>
+                    </nav>
+                </div><!-- End Mobile Menu -->
+                </nav>
+            </header>
+            <!--End Main Header -->
 
         {% endblock %}
 
+        {# FLASHBAG POUR TOUT EVENTS #}
         {% for label, messages in app.flashes %}
             <div class="container">
                 <div class="alert alert-{{ label }}">
@@ -81,65 +141,142 @@
             </div>
         {% endfor %}
 
+        {% block body %}
+
+            <div class="m-5 card-body">
+
+                <div>
+
+                    <ul>
+                        {% for conference in conferences %}
+                            <li><a href="{{ path('conference', {id: conference.id}) }}">{{ conference.titre }}</a></li>
+                        {% endfor %}
+                    </ul>
+
+                </div>
+
+                <h1>Livre d'or</h1>
+                <h2>Vos commentaires</h2>
+
+            </div>
+
+        {% endblock %}
+
+        {% if is_granted('ROLE_PREVIOUS_ADMIN') %}
+
+            <div class="alert alert-warning m-5">
+                Vous êtes connecté en tant que cet utilisateur.
+                <a href="{{ path('home', {'_switch_user': '_exit'}) }}">Revenir au profil Admin</a>
+            </div>
+
+        {% endif %}
+
+        {# SI ON EST CONNECTE NOTRE NOM APPARAIT #}
         {% if is_granted('ROLE_USER') %}
             <h6 class="isBlue" style="margin-top: 2em; margin-left: 2em;">Bienvenue {{ app.user.prenom }} {{ app.user.nom }}</h6>
         {% endif %}
 
-        {% block body %}
-            <header>
-                <h1><a href="{{ path('home') }}">Les conférences</a></h1>
-                <ul>
-                    {% for conference in conferences %}
-                        <li><a href="{{ path('conference', {id: conference.id}) }}">{{ conference.titre }}</a></li>
-                    {% endfor %}
-                </ul>
-            </header>
-
-            <h1>Livre d'or</h1>
-            <h2>Vos commentaires</h2>
-        {% endblock %}
-
         {% block footer %}
 
-            <footer class="footer fixed-bottom">
-                <div class="container navbar-expand-sm">
-                    <span class="text-muted">© Copyright Astronomy Conference</span>
+            <!-- Main Footer -->
 
-                        <ul class="navbar-nav">
+            <footer class="main-footer">
+                <div class="widgets-section">
+                    <div class="auto-container">
+                        <div class="row">
+                            <div class="big-column col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="footer-column col-xl-7 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="footer-widget about-widget">
+                                            <div class="text">
+                                                <p>Astronomy Conference, des conférences sur l'astronomie en France et en Europe.</p>
+                                            </div>
+                                            <ul class="social-icon-one social-icon-colored">
+                                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="footer-column col-xl-5 col-lg-6 col-md-6 col-sm-12">
+                                        <div class="footer-widget useful-links">
+                                            <h2 class="widget-title">Liens du site</h2>
+                                            <ul class="user-links">
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="{{ path('home') }}">Les conférences</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#">Les conférenciers</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#">Nos livres</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#">A propos de nous</a>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#">Nous contacter</a>
+                                                </li>
+                                                {% if is_granted('ROLE_USER') %}
+                                                    <li class="nav-item dropdown">
+                                                        <a class="nav-link nav-hover-up2" href="{{ path('app_account') }}"> <i class="icon ion-home" style="font-size: large"></i> </i></a>
+                                                    </li>
+                                                    <li class="nav-item dropdown">
+                                                        <a class="nav-link nav-hover-up2" href="{{ path('app_logout') }}">Déconnexion</i></a>
+                                                    </li>
 
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ path('home') }}">Les conférences</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Les conférenciers</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Nos livres</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">A propos de nous</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Nous contacter</a>
-                            </li>
-                            {% if is_granted('ROLE_USER') %}
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link nav-hover-up2" href="{{ path('app_account') }}"> <i class="icon ion-home" style="font-size: large"></i> </i></a>
-                                </li>
-                                <li class="nav-item dropdown">
-                                    <a class="nav-link nav-hover-up2" href="{{ path('app_logout') }}">Déconnexion</i></a>
-                                </li>
+                                                {% else %}
+                                                    <li class="nav-item"><a class="nav-link nav-hover-up2" href="{{ path('app_login') }}">Connexion</a></li>
+                                                {% endif %}
+                                                <li class="nav-item">
+                                                    <a class="nav-link" href="#">Mentions Légales</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--Big Column-->
 
-                            {% else %}
-                                <li class="nav-item"><a class="nav-link nav-hover-up2" href="{{ path('app_login') }}">Connexion</a></li>
-                            {% endif %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">Mentions Légales</a>
-                            </li>
-
-                        </ul>
+                            <div class="big-column col-xl-6 col-lg-12 col-md-12 col-sm-12">
+                                <div class="row">
+                                    <div class="footer-column col-lg-6 col-md-6 col-sm-12">
+                                        <div class="footer-widget contact-widget">
+                                            <h2 class="widget-title">Nous contacter</h2>
+                                            <div class="widget-content">
+                                                <ul class="contact-list">
+                                                    <li>
+                                                        <span class="icon flaticon-phone"></span>
+                                                        <div class="text"><a href="tel:+33140362511">+33 01 40 36 25 11</a></div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="icon flaticon-paper-plane"></span>
+                                                        <div class="text"><a href="mailto:support@astronomyconference.com">support@astronomyconference.com</a></div>
+                                                    </li>
+                                                    <li>
+                                                        <span class="icon flaticon-worldwide"></span>
+                                                        <div class="text">156 rue de Rivoli<br> 75001, Paris</div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Footer Bottom-->
+                <div class="footer-bottom">
+                    <div class="auto-container">
+                        <div class="inner-container clearfix">
+                            <div class="copyright-text">
+                                <p>© Copyright 2020-2021 Tous droits reservés <a href="#">Astronomy Conference</a></p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </footer>
+            <!-- End Footer -->
 
         {% endblock %}
 

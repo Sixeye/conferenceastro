@@ -17,16 +17,20 @@ class CommentaireFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('texte', TextareaType::class)
+            ->add('texte', TextareaType::class, [ 'attr' => ['name' => 'commentaire',
+                                                             'placeholder' =>'Saisissez votre commentaire',
+                                                              'rows' => '2',
+                                                               'class' => 'form-control' ]
+            ])
             ->add('photo', FileType::class, [
                 'required'    => false,
                 'mapped'      => false,
+                'attr'        => ['name'        => 'photo',
+                                  'placeholder' => 'Téléchargez votre image',
+                                  'class'       => 'btn'],
                 'constraints' => [
-                    new Image(['maxSize' => '1024k'])
-                ],
-            ])
-            ->add('submit', SubmitType::class)
-        ;
+                    new Image(['maxSize' => '1024k']),
+            ]]);
     }
 
     public function configureOptions(OptionsResolver $resolver)

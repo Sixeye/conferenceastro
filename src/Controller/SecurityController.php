@@ -99,7 +99,7 @@ class SecurityController extends AbstractController
 
     /**
      * Allows to change the password
-     * @Route("/account/initialisation_password", name="initialisation_password")
+     * @Route("/initialisation_password", name="initialisation_password")
      * @return Response
      */
     public function initialisationPassword(Request $request, UserPasswordEncoderInterface $encoder, EntityManagerInterface $em)

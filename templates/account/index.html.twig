@@ -10,6 +10,12 @@
 
 {% block body %}
 
-    <h1>{{ app.user.prenom  }}, ici, vous allez pouvoir gérer votre compte </h1>
+    <div class="mx-auto" style="width: 100em; height: 25em;">
+        <hr>
+    </div>
 
+    <div class="card-body m-5">
+        <h1 class="m-5">{{ app.user.prenom }} {{ app.user.nom }}, ici, vous allez pouvoir gérer votre compte </h1>
+        <a class="m-5" href="{{ path('initialisation_password') }}"><i class="far fa-address-card"></i> - INITIALISATION DU MOT DE PASSE</a>
+    </div>
 {% endblock %}

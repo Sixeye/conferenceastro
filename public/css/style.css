@@ -134,7 +134,7 @@ body {
 a{
 	text-decoration:none;
 	cursor:pointer;
-	color:#f20487;
+	color:#904a70;
 }
 
 button,
@@ -236,17 +236,17 @@ img{
 
 
 ::selection {
-background:#ec167f;
+background:#904a70;
 color:#ffffff;
 }
 
 ::-moz-selection {
-background:#ec167f;
+background:#904a70;
 color:#ffffff;
 }
 
 ::-webkit-selection {
-background:#ec167f;
+background:#904a70;
 color:#ffffff;
 }
 
@@ -272,7 +272,7 @@ color:#ffffff;
 	color:#ffffff;
 	font-weight:400;
 	text-align:center;
-	background-color: #ec167f;
+	background-color: #904a70;
 	overflow: hidden;
 	border-radius: 10px;
 }
@@ -282,7 +282,7 @@ color:#ffffff;
 }
 
 .btn-style-one:hover{
-	color:#ec167f;
+	color:#904a70;
 	-webkit-box-shadow: 0 10px 30px rgba(0,0,0,0.10);
 	-moz-box-shadow: 0 10px 30px rgba(0,0,0,0.10);
 	-ms-box-shadow: 0 10px 30px rgba(0,0,0,0.10);
@@ -532,7 +532,7 @@ color:#ffffff;
 	font-size: 16px;
 	content: "\52";
 	font-family: 'ElegantIcons';
-	color: #e1137b;
+	color: #904a70;
 }
 
 /* List Style Two */
@@ -557,7 +557,7 @@ color:#ffffff;
 	top: 12px;
 	height: 6px;
 	width: 6px;
-	background-color: #e1137b;
+	background-color: #904a70;
 	content: "";
 }
 
@@ -608,8 +608,8 @@ color:#ffffff;
 }
 
 .social-icon-one li a:hover .fab{
-	background-color: #e1137b;
-	border-color: #e1137b;
+	background-color: #904a70;
+	border-color: #904a70;
 	color: #ffffff;
 }
 
@@ -711,7 +711,7 @@ color:#ffffff;
 	margin-top: 45px;
 	font-size: 24px;
 	line-height: 1em;
-	color: #f20487;
+	color: #904a70;
 	text-decoration: underline;
 	font-family: "Ubuntu", sans-serif;
 	font-weight: 400;
@@ -753,7 +753,7 @@ img{
 	text-align:center;
 	z-index:100;
 	cursor:pointer;
-	background:#e1137b;
+	background:#904a70;
 	display:none;
 	-webkit-transition:all 300ms ease;
 	-moz-transition:all 300ms ease;
@@ -1107,7 +1107,7 @@ img{
 	-ms-transform: rotateX(90deg);
 	-o-transform: rotateX(90deg);
 	transform: rotateX(90deg);
-	border-bottom: 3px solid #f20487;
+	border-bottom: 3px solid #904a70;
 	border-radius: 0 0 6px 6px;
 	-webkit-box-shadow:2px 2px 5px 1px rgba(0,0,0,0.05),-2px 0px 5px 1px rgba(0,0,0,0.05);
 	-ms-box-shadow:2px 2px 5px 1px rgba(0,0,0,0.05),-2px 0px 5px 1px rgba(0,0,0,0.05);
@@ -1158,7 +1158,7 @@ img{
 }
 
 .main-menu .navigation > li > ul > li:hover > a{
-	color:#e1137b;
+	color:#904a70;
 }
 
 .main-menu .navigation > li > ul > li > ul{
@@ -1183,7 +1183,7 @@ img{
 	-ms-transform: rotateX(90deg);
 	-o-transform: rotateX(90deg);
 	transform: rotateX(90deg);
-	border-bottom: 3px solid #f20487;
+	border-bottom: 3px solid #904a70;
 	border-radius: 0 0 6px 6px;
 	-webkit-box-shadow:2px 2px 5px 1px rgba(0,0,0,0.05),-2px 0px 5px 1px rgba(0,0,0,0.05);
 	-ms-box-shadow:2px 2px 5px 1px rgba(0,0,0,0.05),-2px 0px 5px 1px rgba(0,0,0,0.05);
@@ -1224,7 +1224,7 @@ img{
 }
 
 .main-menu .navigation > li > ul > li > ul > li:hover > a{
-	color:#e1137b;
+	color:#904a70;
 }
 
 .main-menu .navigation > li.dropdown:hover > ul{
@@ -1390,7 +1390,7 @@ img{
 	font-size: 40px;
 	line-height: 50px;
 	cursor: pointer;
-	color:#e1137b;
+	color:#904a70;
 	margin:7px 0px 2px;
 	display: none;
 }
@@ -1592,7 +1592,7 @@ img{
 	text-align: center;
 	font-size: 14px;
 	color: #ffffff;
-	background-color: #e1137b;
+	background-color: #904a70;
 	cursor: pointer;
 	z-index: 10;
 	-webkit-transition:all 0.5s ease;
@@ -2159,7 +2159,7 @@ img{
 	width: 90px;
 	z-index:-1;
 	border-radius: 5px 30px 5px 30px;
-	background-color:#ec167f;
+	background-color:#904a70;
 	/* border-top: 3px solid #ec167f;
 	border-bottom: 3px solid #ec167f; */
 	content: "";
@@ -11090,4 +11090,23 @@ img{
 	-ms-transition:all 300ms ease;
 	-o-transition:all 300ms ease;
 	-moz-transition:all 300ms ease;
+}
+
+body { background: #536976;  /* fallback for old browsers */
+	   background: -webkit-linear-gradient(to right, #292E49, #536976);  /* Chrome 10-25, Safari 5.1-6 */
+	   background: linear-gradient(to right, #292E49, #536976); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+	   !important; }
+h4 { color: whitesmoke }
+
+header { display: block;
+		 padding: 5em;
+		 height: 15%;
+		 position: relative;
+}
+
+.event_card {display: block;
+             border-radius: 0.5em ;
+			 padding: 4em;
+             color: hotpink;
+			 position: relative;
 }

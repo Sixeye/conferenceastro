@@ -5,13 +5,19 @@
 {% block body %}
 
     <div class="m-5">
-    <h2 class="jumbotron">Les conférences</h2>
+    <h2 class="card-header">Les conférences</h2>
+
+     <div class="mx-auto" style="width: 100em; height: 12em;">
+        <hr>
+     </div>
 
     {% for conference in conferences %}
-        <h4>{{ conference.titre }} - {{ conference.ville }}</h4>
-        <p>
-            <a href="{{ path('conference', {slug: conference.slug}) }}">découvrir</a>
-        </p>
+        <div class="m-5">
+            <h4>{{ conference.titre }} - {{ conference.ville }}</h4>
+            <p>
+                <a href="{{ path('conference', {slug: conference.slug}) }}">découvrir</a>
+            </p>
+        </div>
     {% endfor %}
 
     </div>

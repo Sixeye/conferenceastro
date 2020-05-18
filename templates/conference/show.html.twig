@@ -4,34 +4,60 @@
 
 {% block body %}
 
-    <h1>{{ conference.titre }} - {{ conference.ville }}</h1>
-    <h2>{{ conference.description }}</h2>
-    <h4>{{ conference.adresse }}</h4>
-    <h4>{{ conference.codepostal }}</h4>
+    <div class="mx-auto" style="width: 100em; height: 28em;">
+        <hr>
+    </div>
 
+    <div class="card m-5 bg-dark event_card"  style="width: 40rem;">
 
-    {% if commentaires | length > 0 %}
-        <div>{{ commentaires | length }} commentaire(s)</div>
-        {% for commentaire in commentaires %}
-            {% if commentaire.filename %}
-                <img src="{{ asset('uploads/photos/' ~ commentaire.filename) }}"/>
+        <h1>{{ conference.titre }} - {{ conference.ville }}</h1>
+        <h2>{{ conference.description }}</h2>
+        <h4>{{ conference.adresse }}</h4>
+        <h4>{{ conference.codepostal }}</h4>
+
+        {% if commentaires | length > 0 %}
+            <div>{{ commentaires | length }} commentaire(s)</div>
+            {% for commentaire in commentaires %}
+                {% if commentaire.filename %}
+                    <img src="{{ asset('uploads/photos/' ~ commentaire.filename) }}"/>
+                {% endif %}
+            <h3>{{ commentaire.texte }}</h3>
+            <small>
+                {{ commentaire.createdAt|format_datetime('medium', 'short') }}
+            </small>
+            {% endfor%}
+            {% if previous >= 0 %}
+                <a href="{{ path('conference', {slug: conference.slug, offset: previous}) }}">Précédent</a>
             {% endif %}
-        <h3>{{ commentaire.texte }}</h3>
-        <small>
-            {{ commentaire.createdAt|format_datetime('medium', 'short') }}
-        </small>
-        {% endfor%}
-        {% if previous >= 0 %}
-            <a href="{{ path('conference', {slug: conference.slug, offset: previous}) }}">Précédent</a>
+            {% if next < commentaires | length %}
+                <a href="{{ path('conference', {slug: conference.slug, offset: next}) }}">Suivant</a>
+            {% endif %}
+            {% else %}
+                <div class="m-3">Pas de commentaires pour le moment.</div>
         {% endif %}
-        {% if next < commentaires | length %}
-            <a href="{{ path('conference', {slug: conference.slug, offset: next}) }}">Suivant</a>
-        {% endif %}
-        {% else %}
-            <div>Pas de commentaires pour le moment.</div>
-    {% endif %}
 
-    <h2>Ajouter votre commentaire</h2>
-    {{ form(commentaire_form) }}
+        <div class="comment-form">
+            <div class="group-title">
+                <h2>Ajouter votre commentaire</h2>
+            </div>
+            {{ form_start(commentaire_form) }}
+                <div class="form-group ">
+                    {{ form_label(commentaire_form.texte) }} <br/>
+                    {{ form_widget(commentaire_form.texte) }} <br/>
+                </div>
 
+                <div class="form-group">
+                    {{ form_label(commentaire_form.photo) }} <br/>
+                    {{ form_widget(commentaire_form.photo) }} <br/>
+                </div>
+
+                <div class="form-group">
+                    <button class="btn btn-secondary" type="submit">Valider</button>
+                </div>
+
+            {{ form_end(commentaire_form) }}
+        </div>
+
+    </div>
 {% endblock %}
+

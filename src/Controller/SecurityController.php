@@ -128,7 +128,7 @@ class SecurityController extends AbstractController
                     'success',
                     "Votre mot de passe a bien été modifié."
                 );
-                return $this->redirectToRoute('accueil');
+                return $this->redirectToRoute('home');
             }
         }
         return $this->render('account/initialisation_password.html.twig', [

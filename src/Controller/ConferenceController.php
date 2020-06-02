@@ -5,15 +5,22 @@ namespace App\Controller;
 use App\Entity\Commentaire;
 use App\Entity\Conference;
 use App\Form\CommentaireFormType;
+use App\Form\RegistrationType;
 use App\Repository\CommentaireRepository;
 use App\Repository\ConferenceRepository;
+use App\Security\LoginFormAuthenticator;
+use App\service\CustomMailer;
+use App\service\UserAuto;
 use App\SpamChecker;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Guard\GuardAuthenticatorHandler;
 use Twig\Environment;
 
 class ConferenceController extends AbstractController
@@ -40,12 +47,37 @@ class ConferenceController extends AbstractController
     /**
      * @Route("/conference/{slug}", name="conference")
      */
-    public function show(Request $request, Conference $conference, CommentaireRepository $commentaireRepository, SpamChecker $spamChecker, string $photoDir)
+    public function show(Request $request, Conference $conference, CommentaireRepository $commentaireRepository, SpamChecker $spamChecker, string $photoDir,
+    EntityManagerInterface $manager, UserPasswordEncoderInterface $encoder, GuardAuthenticatorHandler $guardHandler, LoginFormAuthenticator $authenticator, MailerInterface $mailer)
     {
         $commentaire = new Commentaire();
+        $user = $this->getUser();
+
         $form = $this->createForm(CommentaireFormType::class, $commentaire);
         $form->handleRequest($request);
+
+        $formUser = $this->createForm(RegistrationType::class, $user);
+        $formUser->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()){
+
+            if ($user == null)
+            {
+                $userAuto = new UserAuto();
+                $userAuto->userAuto($request, $encoder, $guardHandler, $authenticator, $manager, $formUser);
+
+                // Get the submitted user credentials
+                $user = $userAuto->getUser();
+                $mdp  = $userAuto->getMdp();
+
+                // Sending him an welcome e-mail
+                $customMailer = new CustomMailer();
+                $customMailer->automaticAccount($user, $mdp, $mailer);
+            }
+
+            $commentaire->setUser($user);
+            $commentaire->setCreatedAt(new \Datetime('now'));
+
             $commentaire->setConference($conference);
             if ($photo = $form['photo']->getData()){
                 $filename = bin2hex(random_bytes(6)).'.'.$photo->guessExtension();
@@ -72,7 +104,9 @@ class ConferenceController extends AbstractController
             }
 
             $this->entityManager->flush();
-            return $this->redirectToRoute('conference', ['slug' => $conference->getSlug()]);
+            return $this->redirectToRoute('conference', ['slug' => $conference->getSlug(),
+                'form' => $form,
+                'form_user' => $formUser,]);
         }
 
         $offset = max(0, $request->query->getInt('offset', 0));
@@ -82,7 +116,8 @@ class ConferenceController extends AbstractController
             'commentaires'     => $paginator,
             'previous'         => $offset - CommentaireRepository::PAGINATOR_PER_PAGE,
             'next'             => min(count($paginator), $offset + CommentaireRepository::PAGINATOR_PER_PAGE),
-            'commentaire_form' => $form->createView(),
+            'form'             => $form->createView(),
+            'form_user'        => $formUser->createView(),
         ]));
     }
 }

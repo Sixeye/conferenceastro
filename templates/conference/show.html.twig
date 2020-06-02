@@ -40,22 +40,42 @@
             <div class="group-title">
                 <h2>Ajouter votre commentaire</h2>
             </div>
-            {{ form_start(commentaire_form) }}
+
+            {{ form_start(form) }}
                 <div class="form-group ">
-                    {{ form_label(commentaire_form.texte) }} <br/>
-                    {{ form_widget(commentaire_form.texte) }} <br/>
+                    {{ form_label(form.texte) }} <br/>
+                    {{ form_widget(form.texte) }} <br/>
                 </div>
 
                 <div class="form-group">
-                    {{ form_label(commentaire_form.photo) }} <br/>
-                    {{ form_widget(commentaire_form.photo) }} <br/>
+                    {{ form_label(form.photo) }} <br/>
+                    {{ form_widget(form.photo) }} <br/>
                 </div>
+
+            {% if app.user is null %}
+
+            <div class="form-group">
+                {{ form_label(form_user.prenom) }}
+                {{ form_widget(form_user.prenom) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form_user.nom) }}
+                {{ form_widget(form_user.nom) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_label(form_user.email) }}
+                {{ form_widget(form_user.email) }}
+            </div>
+
+            {% endif %}
 
                 <div class="form-group">
                     <button class="btn btn-secondary" type="submit">Valider</button>
                 </div>
 
-            {{ form_end(commentaire_form) }}
+            {{ form_end(form) }}
         </div>
 
     </div>

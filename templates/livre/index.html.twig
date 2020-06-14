@@ -16,7 +16,7 @@
         <hr>
     </div>
 
-    <div class="m-5" id="basket" style="display: nonea;">
+    <div class="m-5" id="basket" >
         <a href="#" class="panier">Voir le panier</a>
         <div>0 livres</div>
     </div>
@@ -32,7 +32,7 @@
                 <div>
                     <h2 class="card-header">{{ book.titre }}</h2>
                     <p>auteur(s) {{ book.auteurs }}</p>
-                    <p>{{ book.prixht * 1.2 }} €</p>
+                    <p>{{ book.prixht * 1.055 | round(2, 'floor') }} €</p>
                     <p>DESCRIPTION: {{ book.description }}</p>
                     <p>ISBN: {{ book.isbn }}</p>
                     <button onClick="addToBasket({{ book.id }});">Ajouter au panier</button>
@@ -40,6 +40,10 @@
             </div>
 
         {% endfor %}
+
+            {{ knp_pagination_render(books) }}
+
+
     </div>
 
     <script>

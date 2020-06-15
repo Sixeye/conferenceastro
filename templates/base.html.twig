@@ -84,9 +84,7 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ path('home') }}">Les conférences</a>
                                         </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="#">Les conférenciers</a>
-                                        </li>
+
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ path('livre') }}">Nos livres</a>
                                         </li>
@@ -103,6 +101,7 @@
 
                                         {% else %}
                                             <li class="nav-item"><a class="nav-link nav-hover-up2" href="{{ path('app_login') }}">Connexion</a></li>
+                                            <li class="nav-item"><a class="nav-link nav-hover-up2" href="{{ path('app_register') }}">S'inscrire</a></li>
                                         {% endif %}
                                     </ul>
                                 </div>
@@ -192,9 +191,6 @@
                                             <ul class="user-links">
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="{{ path('home') }}">Les conférences</a>
-                                                </li>
-                                                <li class="nav-item">
-                                                    <a class="nav-link" href="#">Les conférenciers</a>
                                                 </li>
                                                 <li class="nav-item">
                                                     <a class="nav-link" href="{{ path('app_account') }}">Nos livres</a>

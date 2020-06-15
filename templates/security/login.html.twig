@@ -24,7 +24,7 @@
                     You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
                 </div>
             {% endif %}
-            <h1 class="h3 mb-3 font-weight-light">Connexion</h1>
+            <h1 class="h3 mb-3 font-weight-light">CONNEXION</h1>
             <label for="inputEmail" class="sr-only">Votre adresse e-mail</label>
             <input type="email" name="email" value="{{ last_username }}" id="inputEmail" class="form-control" placeholder="Votre e-mail" required autofocus>
             <label for="inputPassword" class="sr-only">Votre mot de passe</label>
@@ -40,6 +40,9 @@
             <button class="btn btn-lg btn-primary btn-block" type="submit">
                 Soumettre
             </button>
+
+            <a class="nav-link m-2" href="{{ path('app_forgotten_password') }}"> 🔐 Mot de passe oublié  </a>
+
         </form>
 
 {% endblock %}

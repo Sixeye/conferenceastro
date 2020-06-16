@@ -11,7 +11,6 @@ use App\Repository\UserRepository;
 use App\Security\LoginFormAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
 use Exception;
-use Swift_Mailer;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormError;
@@ -79,6 +78,8 @@ class SecurityController extends AbstractController
 
         $form->handleRequest($request);
 
+//error exists
+
         if($form->isSubmitted() && $form->isValid())
         {
             $password = $passwordEncoder->encodePassword($user, $user->getPassword());
@@ -87,8 +88,12 @@ class SecurityController extends AbstractController
             // On génère un activation_token
             $user->setActivationToken(md5(uniqid()));
 
+            $em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();
+
+//            $em->persist($user);
+//            $em->flush();
 
             // Activation email avec le token
             $email = (new TemplatedEmail())

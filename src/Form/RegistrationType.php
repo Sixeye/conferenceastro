@@ -28,6 +28,7 @@ class RegistrationType extends AbstractType
                                                                     new NotBlank(),
                                                                     new Length(['min' => 5])]])
             ->add('passwordConfirm', PasswordType::class, ['attr' => ['placeholder' => 'Confirmez']])
+
         ;
     }
 

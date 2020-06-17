@@ -6,6 +6,7 @@ easy_admin:
             - { entity: 'Commentaire', label: 'Commentaires', icon: 'comments' }
             - { entity: 'Livre', label: 'Livres', icon: 'book' }
             - { entity: 'Commande', label: 'Commandes', icon: 'shopping-cart'}
+            - { entity: 'User', label: 'Utilisateurs', icon: 'user'}
 
     entities:
         # List the entity class name you want to manage
@@ -23,6 +24,9 @@ easy_admin:
 
         Commande:
             class: App\Entity\Commande
+
+        User:
+            class: App\Entity\User
 
 
       #  - App\Entity\Commentaire

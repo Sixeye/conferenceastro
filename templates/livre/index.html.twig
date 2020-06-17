@@ -28,14 +28,28 @@
 
         {% for book in books %}
             <div class="card-body book_card">
-                <img src="/img/livre/{{ book.image }}" alt="Book cover">
+                <a href="livre/{{ book.titre }}">
+                    <img src="/img/livre/{{ book.image }}" alt="Book cover" style="width: 10em; margin-right: 1em;">
+                </a>&nbsp;
                 <div>
-                    <h2 class="card-header">{{ book.titre }}</h2>
-                    <p>auteur(s) {{ book.auteurs }}</p>
-                    <p>{{ book.prixht * 1.055 | round(2, 'floor') }} €</p>
+                    <a href="livre/{{ book.titre }}">
+                        <h2 class="card-header">{{ book.titre }}</h2>
+                    </a>&nbsp;
+                    <p>Auteur: {{ book.auteurs }}</p>
+                    {% if book.coAuteur %}
+                        <p>Co-auteur: {{ book.coAuteur }}</p>
+                    {% endif %}
+                    <p>{{ book.prixht * 1.055 | round(2, 'floor') }} € TTC</p>
                     <p>DESCRIPTION: {{ book.description }}</p>
+                    {% if book.nbPage %}
+                        <p>NOMBRE DE PAGES: {{ book.nbPage }}</p>
+                    {% endif %}
                     <p>ISBN: {{ book.isbn }}</p>
-                    <button onClick="addToBasket({{ book.id }});">Ajouter au panier</button>
+                    {% if book.auteurBio %}
+                        <p>BIOGRAPHIE: {{ book.auteurBio }}</p>
+                    {% endif %}
+{#                    <button onClick="addToBasket({{ book.id }});">Ajouter au panier</button>#}
+                    <button><a href="{{ path('cart_add', {'id': book.id})  }}">Ajouter au panier</button>
                 </div>
             </div>
 

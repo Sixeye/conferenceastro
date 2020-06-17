@@ -88,18 +88,26 @@
                                         <li class="nav-item">
                                             <a class="nav-link" href="{{ path('livre') }}">Nos livres</a>
                                         </li>
+
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ path('cart_index') }}">Panier</a>
+                                        </li>
+
                                         {% if is_granted('ROLE_USER') %}
+
                                             <li class="nav-item dropdown">
                                                 <a class="nav-link nav-hover-up2" href="{{ path('app_account') }}"> <i class="icon ion-home" style="font-size: large"></i> </i></a>
                                             </li>
                                             <li class="nav-item dropdown">
-                                                <a class="nav-link nav-hover-up2" href="{{ path('app_logout') }}">Déconnexion</i></a>
+                                                <a class="nav-link nav-hover-up2" href="{{ path('app_logout') }}">Déconnexion</a>
                                             </li>
                                             <li class="nav-item dropdown">
-                                                <a class="nav-link nav-hover-up2" href="{{ path('app_account') }}">Mon compte</i></a>
+                                                <a class="nav-link nav-hover-up2" href="{{ path('app_account') }}">Mon compte</a>
                                             </li>
 
                                         {% else %}
+
+
                                             <li class="nav-item"><a class="nav-link nav-hover-up2" href="{{ path('app_login') }}">Connexion</a></li>
                                             <li class="nav-item"><a class="nav-link nav-hover-up2" href="{{ path('app_register') }}">S'inscrire</a></li>
                                         {% endif %}
@@ -275,7 +283,6 @@
             <script src="{{ asset('js/bootstrap.js') }}"></script>
             <script src="{{ asset('js/appear.js') }}"></script>
             <script src="{{ asset('js/color-settings.js') }}"></script>
-            <script src="{{ asset('js/map-script.js') }}"></script>
             <script src="{{ asset('js/owl.js') }}"></script>
             <script src="{{ asset('js/parallax.min.js') }}"></script>
             <script src="{{ asset('js/script.js') }}"></script>

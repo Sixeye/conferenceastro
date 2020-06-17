@@ -58,6 +58,26 @@ class Livre
      */
     private $image;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $coAuteur;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $nbPage;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $auteurBio;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $editeur;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -176,6 +196,54 @@ class Livre
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getCoAuteur(): ?string
+    {
+        return $this->coAuteur;
+    }
+
+    public function setCoAuteur(?string $coAuteur): self
+    {
+        $this->coAuteur = $coAuteur;
+
+        return $this;
+    }
+
+    public function getNbPage(): ?int
+    {
+        return $this->nbPage;
+    }
+
+    public function setNbPage(?int $nbPage): self
+    {
+        $this->nbPage = $nbPage;
+
+        return $this;
+    }
+
+    public function getAuteurBio(): ?string
+    {
+        return $this->auteurBio;
+    }
+
+    public function setAuteurBio(?string $auteurBio): self
+    {
+        $this->auteurBio = $auteurBio;
+
+        return $this;
+    }
+
+    public function getEditeur(): ?string
+    {
+        return $this->editeur;
+    }
+
+    public function setEditeur(?string $editeur): self
+    {
+        $this->editeur = $editeur;
 
         return $this;
     }

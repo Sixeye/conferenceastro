@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{ livre.titre }} {% endblock %}
+
+{% block body %}
+
+    <div class="mx-auto" style="width: 100em; height: 20em;">
+        <hr>
+    </div>
+    <div class="mx-auto" style="margin-left: 10em;">
+        <div class="card" style="width: 30em; margin-top: 10em;">
+            <img class="card-img-top" src="/img/livre/{{ livre.image }}" alt="Book cover">
+            <div class="card-body">
+                <h5 class="card-title">{{ livre.titre }}</h5>
+                <h3 class="card-title">{{ livre.auteurs }}</h3>
+                <p class="card-text">{{ livre.description | raw }}</p>
+                <p class="card-text">{{ livre.isbn | raw }}</p>
+                <p class="card-text"><strong>le livre</strong> pour <strong>{{ livre.prixht }} euros</strong></p>
+                <a href="#" class="btn btn-primary">Commander</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %} {% block body %}
+    <div class="mx-auto" style="width: 100em; height: 12em;">
+        <hr>
+    </div>
+    <div class="mx-auto" style="width: 100em; height: 12em;">
+
+    </div>
+<h1>Checkout</h1>
+
+<script src="https://js.stripe.com/v3/"></script>
+
+<script>
+    let stripe = Stripe('pk_test_qPTC8yPveFEJfxhwcvWt7iTv00pO29f7l2');
+    let sessionId = "{{ sessionId }}";
+
+    //console.log(sessionId)
+    stripe.redirectToCheckout({
+        sessionId: sessionId
+    }).then(function(result) {});
+</script>
+{% endblock %}

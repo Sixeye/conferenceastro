@@ -1,0 +1,106 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+
+    <div class="mx-auto" style="width: 100em; height: 18em;">
+        <hr>
+    </div>
+
+    <div class="bg-light p-3">
+        <h1>Votre panier</h1>
+    </div>
+    <div class="outer-box m-5">
+        <div class="row">
+            {% if items | length >0 %}
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="color: whitesmoke">Produit(s)</th>
+                        <th style="color: whitesmoke">Prix</th>
+                        <th style="color: whitesmoke">Quantité</th>
+                        <th style="color: whitesmoke">Total</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set i=0 %} {% for item in items %}
+                    <tr id="ligne{{i}}">
+                        <td style="color: whitesmoke">{{ item.book.titre }}</td>
+                        <td><input id="price{{i}}" value="{{ item.book.prixht }}" style="background-color:#F8F9F9; color: black" disabled="disabled"> €</td>
+                        <td><input type="number" id="target{{i}}" value="{{ item.quantity }}" min="1" onchange='calcul_prix({{i}});'></td>
+                        <td><input id="total{{i}}" value="{{ item.book.prixht * item.quantity }}" style="background-color:#F8F9F9; color: black;" disabled="disabled"> €</td>
+                        <td>
+                            <a href="{{ path('cart_remove', {'id' : item.book.id }) }}" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        </td>
+                    </tr>
+                    {% set i = i + 1 %} {% endfor %}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td colspan="3" class="text-right"> Total : </td>
+                        <td><input id="totale" value="{{ total }}" style="background-color:#F8F9F9" disabled="disabled"> €</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+            <div class="col-lg-4">
+                <p>Prix Total TTC : <input id="totale2" value="{{ total }}" style="font-size:2em;width:27%; background-color:#F8F9F9" disabled="disabled"> €</p>
+            </div>
+            <div class="col-lg-4">
+                <form action="vider" method="post">
+                    <button class="btn btn-danger">Vider le panier</button>
+                </form>
+            </div>
+
+                {% if app.user is null %}
+
+                    <ul>
+
+                        <li class="nav-item"><a style="font-size: 2em" class="nav-link nav-hover-up2" href="{{ path('app_login') }}">Connectez-vous</a></li>
+                        <li class="nav-item"><a style="font-size: 2em" class="nav-link nav-hover-up2" href="{{ path('app_register') }}">Inscrivez-vous</a></li>
+
+                    </ul>
+
+                {% else %}
+
+                    <div class="col-lg-4">
+                        <form action="checkout" method="post">
+                            <input type="hidden" name="total" value="{{ total}}" id="totale3">
+                            <button type="submit" class="btn btn-success">Paiement</button>
+                        </form>
+                    </div>
+
+                {% endif %}
+
+            {% else %}
+            <p>Votre panier est vide !</p>
+            {% endif %}
+
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        function calcul_prix(ligne) {
+            //alert(ligne);
+            let quantite = $("#target" + ligne).val();
+            //alert($("#prix"+ligne).val());
+            let prixTotal = quantite * $("#prix" + ligne).val();
+            // alert(prixTotalbouteille);
+            // 2 chiffres après la virgule
+            let avant = $("#total" + ligne).val();
+            $("#total" + ligne).val(prixTotal);
+
+            //supprime l'ancien total de ligne concerné
+            let totales1 = $("#totale").val() - avant;
+
+            //ajoute le nouveau total de la ligne dans TOTAL global
+            let totales = totales1 + prixTotal;
+            $("#totale,#totale2,#totale3").val(totales);
+        }
+    </script>
+
+{% endblock %}

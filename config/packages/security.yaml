@@ -52,4 +52,4 @@ security:
         - { path: ^/account, roles: IS_AUTHENTICATED_REMEMBERED }
         # - { path: ^/profile, roles: ROLE_USER }
 
-    access_denied_url: /login
+    access_denied_url: /

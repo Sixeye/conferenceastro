@@ -11,6 +11,7 @@
     <div class="card m-5 bg-dark event_card"  style="width: 40rem;">
 
         <h1>{{ conference.titre }} - {{ conference.ville }}</h1>
+        <h5>{{ conference.date |date("d.m.Y")}}</h5>
         <h2>{{ conference.description }}</h2>
         <h4>{{ conference.adresse }}</h4>
         <h4>{{ conference.codepostal }}</h4>
@@ -22,15 +23,18 @@
                     <img src="{{ asset('uploads/photos/' ~ commentaire.filename) }}"/>
                 {% endif %}
             <h3>{{ commentaire.texte }}</h3>
+            <h5 style="color: whitesmoke">par {{ commentaire.user }}</h5>
             <small>
                 {{ commentaire.createdAt|format_datetime('medium', 'short') }}
             </small>
             {% endfor%}
             {% if previous >= 0 %}
-                <a href="{{ path('conference', {slug: conference.slug, offset: previous}) }}">Précédent</a>
+                <br/>
+                <a style="color: whitesmoke" href="{{ path('conference', {slug: conference.slug, offset: previous}) }}">Précédent</a>
             {% endif %}
             {% if next < commentaires | length %}
-                <a href="{{ path('conference', {slug: conference.slug, offset: next}) }}">Suivant</a>
+                <br/>
+                <a style="color: whitesmoke" href="{{ path('conference', {slug: conference.slug, offset: next}) }}">Suivant</a>
             {% endif %}
             {% else %}
                 <div class="m-3">Pas de commentaires pour le moment.</div>

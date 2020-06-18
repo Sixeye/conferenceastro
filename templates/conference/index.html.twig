@@ -14,6 +14,7 @@
     {% for conference in conferences %}
         <div class="m-5">
             <h4>{{ conference.titre }} - {{ conference.ville }}</h4>
+            <h5>{{ conference.date |date("d.m.Y")}}</h5>
             <p>
                 <a href="{{ path('conference', {slug: conference.slug}) }}">découvrir</a>
             </p>

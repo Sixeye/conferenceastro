@@ -1,5 +1,4 @@
 easy_admin:
-    site_name: Astronomie Conference
     design:
         menu:
             - { entity: 'Conference', label: 'Conferences', icon: 'map-marker' }
@@ -7,6 +6,7 @@ easy_admin:
             - { entity: 'Livre', label: 'Livres', icon: 'book' }
             - { entity: 'Commande', label: 'Commandes', icon: 'shopping-cart'}
             - { entity: 'User', label: 'Utilisateurs', icon: 'user'}
+        brand_color: '#688aac'
 
     entities:
         # List the entity class name you want to manage
@@ -32,3 +32,7 @@ easy_admin:
       #  - App\Entity\Commentaire
       #  - App\Entity\Livre
       #  - App\Entity\Commande
+
+    site_name: '<a style="font-size: 1.4em;" href="/"> 🔭 &nbsp;ASTRONOMY CONFERENCE </a>'
+
+

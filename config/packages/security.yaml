@@ -51,3 +51,5 @@ security:
         - { path: ^/change-password, roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/account, roles: IS_AUTHENTICATED_REMEMBERED }
         # - { path: ^/profile, roles: ROLE_USER }
+
+    access_denied_url: /login

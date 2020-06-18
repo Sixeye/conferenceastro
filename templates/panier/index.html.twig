@@ -25,19 +25,25 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% set i=0 %} {% for item in items %}
-                    <tr id="ligne{{i}}">
-                        <td style="color: whitesmoke">{{ item.book.titre }}</td>
-                        <td><input id="price{{i}}" value="{{ item.book.prixht }}" style="background-color:#F8F9F9; color: black" disabled="disabled"> €</td>
-                        <td><input type="number" id="target{{i}}" value="{{ item.quantity }}" min="1" onchange='calcul_prix({{i}});'></td>
-                        <td><input id="total{{i}}" value="{{ item.book.prixht * item.quantity }}" style="background-color:#F8F9F9; color: black;" disabled="disabled"> €</td>
-                        <td>
-                            <a href="{{ path('cart_remove', {'id' : item.book.id }) }}" class="btn btn-danger btn-sm">
-                                <i class="fas fa-trash"></i>
-                            </a>
-                        </td>
-                    </tr>
-                    {% set i = i + 1 %} {% endfor %}
+                    {% set i=0 %}
+
+                        {% for item in items %}
+
+                            <tr id="ligne{{i}}">
+                                <td style="color: whitesmoke">{{ item.book.titre }}</td>
+                                <td><input id="price{{i}}" value="{{ item.book.prixht }}" style="background-color:#F8F9F9; color: black" disabled="disabled"> €</td>
+                                <td><input type="number" id="target{{i}}" name="quantity" value="{{ item.quantity }}" min="1" onchange='calcul_prix({{i}});'></td>
+                                <td><input id="total{{i}}" name="total" value="{{ item.book.prixht * item.quantity }}" style="background-color:#F8F9F9; color: black;" disabled="disabled"> €</td>
+                                <td>
+                                    <a href="{{ path('cart_remove', {'id' : item.book.id }) }}" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+
+                        {% set i = i + 1 %}
+
+                    {% endfor %}
                 </tbody>
                 <tfoot>
                     <tr>
@@ -85,11 +91,10 @@
 
     <script type="text/javascript">
         function calcul_prix(ligne) {
-            //alert(ligne);
+
             let quantite = $("#target" + ligne).val();
-            //alert($("#prix"+ligne).val());
-            let prixTotal = quantite * $("#prix" + ligne).val();
-            // alert(prixTotalbouteille);
+            let prixTotal = quantite * $("#price" + ligne).val();
+
             // 2 chiffres après la virgule
             let avant = $("#total" + ligne).val();
             $("#total" + ligne).val(prixTotal);

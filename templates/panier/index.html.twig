@@ -76,10 +76,16 @@
                     <div class="col-lg-4">
                         <form action="checkout" method="post">
                             <input type="hidden" name="total" value="{{ total}}" id="totale3">
-                            <button type="submit" class="btn btn-success">Paiement</button>
+                            <button type="submit" name="payment" class="btn btn-success">Paiement</button>
                         </form>
                     </div>
+                    <div id="commande" style="display: none;">
 
+                        {{ form_start(form) }}
+
+                        {{ form_end(form) }}
+
+                    </div>
                 {% endif %}
 
             {% else %}
